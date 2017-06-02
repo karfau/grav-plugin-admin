@@ -81,7 +81,7 @@
                 <i class="page-icon fa fa-fw fa-circle-o {{ p.children(0).count > 0 ? 'children-closed' : ''}} {{ p.modular ? 'modular' : (not p.routable ? 'not-routable' : (not p.visible ? 'not-visible' : (not p.page ? 'folder' :  ''))) }}"></i>
                 </span>
                 <span data-hint="{{ description|trim(' &bull; ')|raw }}" class="hint--right">
-                <a href="{{ page_url }}" class="page-edit">{{ p.title|e }}</a>
+                <a href="{{ page_url }}" class="page-edit">{{ p.menu|e }}</a>
                 </span>
                 {% if p.language %}
                     <span class="badge lang {% if p.language == admin_lang %}info{% endif %}">{{p.language}}</span>
