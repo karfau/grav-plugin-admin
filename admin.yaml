@@ -23,7 +23,7 @@ warnings:
   delete_page: true
 edit_mode: normal
 show_github_msg: true
-#pages.list_display_field: 'title'
+#pages_list_display_field: 'title'
 google_fonts: true
 enable_auto_updates_check: true
 notifications:

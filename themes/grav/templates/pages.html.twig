@@ -46,6 +46,7 @@
 
 {% macro loop(page, depth, twig_vars) %}
     {% set separator = twig_vars['config'].system.param_sep %}
+    {% set display_field = twig_vars['config'].plugins.admin.pages_list_display_field|defined('title') %}
     {% set base_url = twig_vars['base_url_relative'] %}
     {% set base_url_simple = twig_vars['base_url_simple'] %}
     {% set admin_route = twig_vars['admin_route'] %}
@@ -81,12 +82,8 @@
                 <i class="page-icon fa fa-fw fa-circle-o {{ p.children(0).count > 0 ? 'children-closed' : ''}} {{ p.modular ? 'modular' : (not p.routable ? 'not-routable' : (not p.visible ? 'not-visible' : (not p.page ? 'folder' :  ''))) }}"></i>
                 </span>
                 <span data-hint="{{ description|trim(' &bull; ')|raw }}" class="hint--right">
-                    {%- set display_field = config.plugins.admin.pages.list_display_field|defined('title') -%}
-                    {%- if p[display_field] -%}
-                        <a href="{{ page_url }}" class="page-edit">{{ p[display_field]|e }}</a>
-                    {%- else -%}
-                        <a href="{{ page_url }}" class="page-edit">{{ p.title|e }}</a>
-                    {%- endif -%}
+                    {% set page_label = attribute(p.header, display_field)|defined(attribute(p, display_field))|defined(p.title) %}
+                    <a href="{{ page_url }}" class="page-edit">{{ page_label|e }}</a>
                 </span>
                 {% if p.language %}
                     <span class="badge lang {% if p.language == admin_lang %}info{% endif %}">{{p.language}}</span>

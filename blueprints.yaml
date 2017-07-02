@@ -152,7 +152,7 @@ form:
         type: bool
       help: Show the "Found an issue? Please report it on GitHub." message.
 
-    pages.list_display_field:
+    pages_list_display_field:
       type: text
       size: small
       label: Pages List Display Field
